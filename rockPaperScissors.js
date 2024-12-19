@@ -28,17 +28,23 @@ function playRound(humanChoice, computerChoice) {
     if (humanChoiceLowerCase == computerChoice) {
         console.log("It's a tie - both of us chose " + humanChoiceInUI +"!");
     } else if (humanChoiceLowerCase == "rock" && computerChoice == "paper") {
-        console.log("You lose - " + computerChoiceInUI + " beats " + humanChoiceInUI + "!");
+        computerScore++;
+        console.log("You lose!" + computerChoiceInUI + " beats " + humanChoiceInUI + "!");
     } else if (humanChoiceLowerCase == "rock" && computerChoice == "scissors") {
-        console.log("You win - " + humanChoiceInUI + " beats " + computerChoiceInUI + "!");
+        humanScore++;
+        console.log("You win!" + humanChoiceInUI + " beats " + computerChoiceInUI + "!");
     } else if (humanChoiceLowerCase == "paper" && computerChoice == "scissors") {
-        console.log("You lose - " + computerChoiceInUI + " beats " + humanChoiceInUI + "!");
+        computerScore++;
+        console.log("You lose!" + computerChoiceInUI + " beats " + humanChoiceInUI + "!");
     } else if (humanChoiceLowerCase == "paper" && computerChoice == "rock") {
-        console.log("You win - " + humanChoiceInUI + " beats " + computerChoiceInUI + "!");
+        humanScore++;
+        console.log("You win!" + humanChoiceInUI + " beats " + computerChoiceInUI + "!");
     } else if (humanChoiceLowerCase == "scissors" && computerChoice == "rock") {
-        console.log("You lose - " + computerChoiceInUI + " beats " + humanChoiceInUI + "!");
+        computerScore++;
+        console.log("You lose!" + computerChoiceInUI + " beats " + humanChoiceInUI + "!");
     } else if (humanChoiceLowerCase == "scissors" && computerChoice == "paper") {
-        console.log("You win - " + humanChoiceInUI + " beats " + computerChoiceInUI + "!");
+        humanScore++;
+        console.log("You win!" + humanChoiceInUI + " beats " + computerChoiceInUI + "!");
     } else {
         console.log("You made a typo... Try again, Human!")
     }    
@@ -52,3 +58,7 @@ const humanSelection = getHumanChoice();
 const computerSelection = getComputerChoice();
 
 playRound(humanSelection, computerSelection);
+
+//DEBUG
+console.log(humanScore);
+console.log(computerScore);

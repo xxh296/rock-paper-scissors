@@ -1,2 +1,2 @@
 # rock-paper-scissors
-A js project [assignment](https://www.theodinproject.com/lessons/foundations-rock-paper-scissors) that starts with the simple game logic, and elaborates into more features in later lessons.
+A js project assignment for [game logic](https://www.theodinproject.com/lessons/foundations-rock-paper-scissors) and [user interface](https://www.theodinproject.com/lessons/foundations-revisiting-rock-paper-scissors).

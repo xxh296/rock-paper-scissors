@@ -2,7 +2,7 @@ let humanScore = 0;
 let computerScore = 0;
 
 function getComputerChoice() {
-    randomNumber = Math.random();
+    const randomNumber = Math.random();
     if (randomNumber === 0 || randomNumber === 1) {
         getComputerChoice();
     }
@@ -50,6 +50,10 @@ function playRound(humanChoice, computerChoice) {
     }    
 }
 
+/* Adding UI - 
+Turn off the logic that plays 5 rounds
+*/
+/*
 function playGame() {
     for (let i = 0; i < 5; i++) {
         let humanSelection = getHumanChoice();
@@ -73,3 +77,5 @@ playGame();
 announceWinner();
 console.log("Your Human score: " + humanScore);
 console.log("Computer score: " + computerScore);
+
+*/

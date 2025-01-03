@@ -27,10 +27,6 @@ function getComputerChoice() {
         return "scissors";
     }
 }
-// Close this out : adding UI
-// function getHumanChoice() {
-//     return prompt("Enter 'rock', 'paper', or 'scissors'.")
-// }
 
 function playRound(humanChoice, computerChoice) {
     const humanChoiceLowerCase = humanChoice.toLowerCase();
@@ -63,48 +59,14 @@ function playRound(humanChoice, computerChoice) {
     checkScore();    
 }
 
-/* Adding UI - 
-Turn off the logic that plays 5 rounds
-*/
-/*
-function playGame() {
-    for (let i = 0; i < 5; i++) {
-        let humanSelection = getHumanChoice();
-        let computerSelection = getComputerChoice();
-        playRound(humanSelection, computerSelection);
-    }
-}
-
-function announceWinner() {
-    if (humanScore > computerScore) {
-        console.log("Congratulations, you won!");
-    } else if (humanScore < computerScore) {
-        console.log("Sorry, you lost.");
-    } else {
-        console.log("Nobody won, it's a tie.")
-    }
-}
-
-// launch game, and declare results
-playGame();
-announceWinner();
-console.log("Your Human score: " + humanScore);
-console.log("Computer score: " + computerScore);
-
-*/
-
-// check score
-// run this after every round
-// TODO : change UI per these messages
+// check score after every round
+// update the score, announce the winner
 function checkScore() {
-    if (humanScore === 5 || computerScore === 5) {
+    if (humanScore === 5 || computerScore === 5) {        
         announceWinner();
-        humanScorePara.textContent = "Your score: " + humanScore;
-        computerScorePara.textContent = "Computer score: " + computerScore;
-        // console.log("Change the interface: announce winner, show score, reset button, remove the 3 selection buttons.")
+        swapButtons();
     } else {
-        // console.log("Make a selection text. Display score.")
-        selectionPrompt.textContent = "Please make your selection.";
+        //selectionPrompt.textContent = "Please make your selection.";
         humanScorePara.textContent = "Your score: " + humanScore;
         computerScorePara.textContent = "Computer score: " + computerScore;
     }
@@ -116,6 +78,20 @@ function announceWinner() {
     } else {
         selectionPrompt.textContent = "Sorry, you lost.";
     }
+}
+
+// change buttons on game over
+function swapButtons() {
+    announceWinner();
+    rockBtn.remove();
+    paperBtn.remove();
+    scissorsBtn.remove();
+    humanScorePara.textContent = "Your score: " + humanScore;
+    computerScorePara.textContent = "Computer score: " + computerScore;
+    const playAgainBtn = document.createElement("button");
+    playAgainBtn.textContent = "Play again!";
+    playAgainBtn.onclick = () => location.reload();
+    container.appendChild(playAgainBtn);
 }
 
 // get the 3 buttons

@@ -15,10 +15,10 @@ function getComputerChoice() {
         return "scissors";
     }
 }
-
-function getHumanChoice() {
-    return prompt("Enter 'rock', 'paper', or 'scissors'.")
-}
+// Close this out : adding UI
+// function getHumanChoice() {
+//     return prompt("Enter 'rock', 'paper', or 'scissors'.")
+// }
 
 function playRound(humanChoice, computerChoice) {
     const humanChoiceLowerCase = humanChoice.toLowerCase();
@@ -79,3 +79,14 @@ console.log("Your Human score: " + humanScore);
 console.log("Computer score: " + computerScore);
 
 */
+
+// get the 3 buttons
+const rockBtn = document.querySelector("#rockBtn");
+const paperBtn = document.querySelector("#paperBtn");
+const scissorsBtn = document.querySelector("#scissorsBtn");
+
+// play a round
+rockBtn.addEventListener("click", () => playRound("rock", getComputerChoice()));
+paperBtn.addEventListener("click", () => playRound("paper", getComputerChoice()));
+scissorsBtn.addEventListener("click", () => playRound("scissors", getComputerChoice()));
+

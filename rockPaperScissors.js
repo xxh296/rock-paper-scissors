@@ -1,7 +1,5 @@
 let humanScore = 0;
 let computerScore = 0;
-// TODO: add message to page
-console.log("Make a selection text. Display score.")
 
 const container = document.querySelector("#container");
 const selectionPrompt = document.createElement("p");
@@ -100,7 +98,7 @@ console.log("Computer score: " + computerScore);
 // TODO : change UI per these messages
 function checkScore() {
     if (humanScore === 5 || computerScore === 5) {
-        selectionPrompt.textContent = "Announce winner, change interface.";
+        announceWinner();
         humanScorePara.textContent = "Your score: " + humanScore;
         computerScorePara.textContent = "Computer score: " + computerScore;
         // console.log("Change the interface: announce winner, show score, reset button, remove the 3 selection buttons.")
@@ -109,6 +107,14 @@ function checkScore() {
         selectionPrompt.textContent = "Please make your selection.";
         humanScorePara.textContent = "Your score: " + humanScore;
         computerScorePara.textContent = "Computer score: " + computerScore;
+    }
+}
+
+function announceWinner() {
+    if (humanScore > computerScore) {
+        selectionPrompt.textContent = "Congratulations, you won!";
+    } else {
+        selectionPrompt.textContent = "Sorry, you lost.";
     }
 }
 

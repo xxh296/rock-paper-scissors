@@ -3,6 +3,18 @@ let computerScore = 0;
 // TODO: add message to page
 console.log("Make a selection text. Display score.")
 
+const container = document.querySelector("#container");
+const selectionPrompt = document.createElement("p");
+const humanScorePara = document.createElement("p");
+const computerScorePara = document.createElement("p");
+selectionPrompt.textContent = "Please make your selection.";
+humanScorePara.textContent = "Your score: " + humanScore;
+computerScorePara.textContent = "Computer score: " + computerScore;
+container.appendChild(selectionPrompt);
+container.appendChild(humanScorePara);
+container.appendChild(computerScorePara);
+
+
 function getComputerChoice() {
     const randomNumber = Math.random();
     if (randomNumber === 0 || randomNumber === 1) {
@@ -88,9 +100,15 @@ console.log("Computer score: " + computerScore);
 // TODO : change UI per these messages
 function checkScore() {
     if (humanScore === 5 || computerScore === 5) {
-        console.log("Change the interface: announce winner, show score, reset button, remove the 3 selection buttons.")
+        selectionPrompt.textContent = "Announce winner, change interface.";
+        humanScorePara.textContent = "Your score: " + humanScore;
+        computerScorePara.textContent = "Computer score: " + computerScore;
+        // console.log("Change the interface: announce winner, show score, reset button, remove the 3 selection buttons.")
     } else {
-        console.log("Make a selection text. Display score.")
+        // console.log("Make a selection text. Display score.")
+        selectionPrompt.textContent = "Please make your selection.";
+        humanScorePara.textContent = "Your score: " + humanScore;
+        computerScorePara.textContent = "Computer score: " + computerScore;
     }
 }
 

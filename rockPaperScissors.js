@@ -44,6 +44,7 @@ function playRound(humanChoice, computerChoice) {
         LOSE: "You lose! ",
         BEATS: " beats ",
         NEXT_SELECTION: "Make your next selection!",
+        TYPO: "You made a typo, Human...",
     };
 
     switch (true) {
@@ -75,7 +76,7 @@ function playRound(humanChoice, computerChoice) {
             selectionPrompt.textContent = ResultMessages.WIN + humanChoiceInUI + ResultMessages.BEATS + computerChoiceInUI + ". " + ResultMessages.NEXT_SELECTION;
             break;
         default:
-            console.log("You made a typo, Human...");
+            console.log(ResultMessages.TYPO);
             break;
     } 
 

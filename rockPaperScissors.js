@@ -32,41 +32,49 @@ function playRound(humanChoice, computerChoice) {
     const humanChoiceLowerCase = humanChoice.toLowerCase();
     const humanChoiceInUI = humanChoice[0].toUpperCase() + humanChoiceLowerCase.substring(1);
     const computerChoiceInUI = computerChoice[0].toUpperCase() + computerChoice.substring(1);
+    const nextSelectionText = "Make your next selection!";
 
     if (humanChoiceLowerCase == computerChoice) {
-        console.log("It's a tie - both of us chose " + humanChoiceInUI +"!");
+        selectionPrompt.textContent = "It's a tie - both of us chose " + humanChoiceInUI +". " + nextSelectionText;
     } else if (humanChoiceLowerCase == "rock" && computerChoice == "paper") {
         computerScore++;
-        console.log("You lose! " + computerChoiceInUI + " beats " + humanChoiceInUI + "!");
+        selectionPrompt.textContent = "You lose! " + computerChoiceInUI + " beats " + humanChoiceInUI + ". " + nextSelectionText;
     } else if (humanChoiceLowerCase == "rock" && computerChoice == "scissors") {
         humanScore++;
-        console.log("You win! " + humanChoiceInUI + " beats " + computerChoiceInUI + "!");
+        selectionPrompt.textContent = "You win! " + humanChoiceInUI + " beats " + computerChoiceInUI + ". " + nextSelectionText;
     } else if (humanChoiceLowerCase == "paper" && computerChoice == "scissors") {
         computerScore++;
-        console.log("You lose! " + computerChoiceInUI + " beats " + humanChoiceInUI + "!");
+        selectionPrompt.textContent = "You lose! " + computerChoiceInUI + " beats " + humanChoiceInUI + ". " + nextSelectionText;
     } else if (humanChoiceLowerCase == "paper" && computerChoice == "rock") {
         humanScore++;
-        console.log("You win! " + humanChoiceInUI + " beats " + computerChoiceInUI + "!");
+        selectionPrompt.textContent = "You win! " + humanChoiceInUI + " beats " + computerChoiceInUI + ". " + nextSelectionText;
     } else if (humanChoiceLowerCase == "scissors" && computerChoice == "rock") {
         computerScore++;
-        console.log("You lose! " + computerChoiceInUI + " beats " + humanChoiceInUI + "!");
+        selectionPrompt.textContent = "You lose! " + computerChoiceInUI + " beats " + humanChoiceInUI + ". " + nextSelectionText;
     } else if (humanChoiceLowerCase == "scissors" && computerChoice == "paper") {
         humanScore++;
-        console.log("You win! " + humanChoiceInUI + " beats " + computerChoiceInUI + "!");
+        selectionPrompt.textContent = "You win! " + humanChoiceInUI + " beats " + computerChoiceInUI + ". " + nextSelectionText;
     } else {
-        console.log("You made a typo, Human!")
+        console.log("You made a typo, Human...")
     }
     checkScore();    
 }
 
-// check score after every round
-// update the score, announce the winner
+const rockBtn = document.querySelector("#rockBtn");
+const paperBtn = document.querySelector("#paperBtn");
+const scissorsBtn = document.querySelector("#scissorsBtn");
+
+// play a round
+rockBtn.addEventListener("click", () => playRound("rock", getComputerChoice()));
+paperBtn.addEventListener("click", () => playRound("paper", getComputerChoice()));
+scissorsBtn.addEventListener("click", () => playRound("scissors", getComputerChoice()));
+
+// to be called from playRound(a,b)
 function checkScore() {
     if (humanScore === 5 || computerScore === 5) {        
         announceWinner();
         swapButtons();
     } else {
-        //selectionPrompt.textContent = "Please make your selection.";
         humanScorePara.textContent = "Your score: " + humanScore;
         computerScorePara.textContent = "Computer score: " + computerScore;
     }
@@ -80,27 +88,15 @@ function announceWinner() {
     }
 }
 
-// change buttons on game over
+// 'Play Again' button on gameover
 function swapButtons() {
-    announceWinner();
     rockBtn.remove();
     paperBtn.remove();
     scissorsBtn.remove();
     humanScorePara.textContent = "Your score: " + humanScore;
     computerScorePara.textContent = "Computer score: " + computerScore;
     const playAgainBtn = document.createElement("button");
-    playAgainBtn.textContent = "Play again!";
+    playAgainBtn.textContent = "Play again";
     playAgainBtn.onclick = () => location.reload();
     container.appendChild(playAgainBtn);
 }
-
-// get the 3 buttons
-const rockBtn = document.querySelector("#rockBtn");
-const paperBtn = document.querySelector("#paperBtn");
-const scissorsBtn = document.querySelector("#scissorsBtn");
-
-// play a round
-rockBtn.addEventListener("click", () => playRound("rock", getComputerChoice()));
-paperBtn.addEventListener("click", () => playRound("paper", getComputerChoice()));
-scissorsBtn.addEventListener("click", () => playRound("scissors", getComputerChoice()));
-

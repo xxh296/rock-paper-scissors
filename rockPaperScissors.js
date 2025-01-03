@@ -1,5 +1,7 @@
 let humanScore = 0;
 let computerScore = 0;
+// TODO: add message to page
+console.log("Make a selection text. Display score.")
 
 function getComputerChoice() {
     const randomNumber = Math.random();
@@ -47,7 +49,8 @@ function playRound(humanChoice, computerChoice) {
         console.log("You win! " + humanChoiceInUI + " beats " + computerChoiceInUI + "!");
     } else {
         console.log("You made a typo, Human!")
-    }    
+    }
+    checkScore();    
 }
 
 /* Adding UI - 
@@ -79,6 +82,17 @@ console.log("Your Human score: " + humanScore);
 console.log("Computer score: " + computerScore);
 
 */
+
+// check score
+// run this after every round
+// TODO : change UI per these messages
+function checkScore() {
+    if (humanScore === 5 || computerScore === 5) {
+        console.log("Change the interface: announce winner, show score, reset button, remove the 3 selection buttons.")
+    } else {
+        console.log("Make a selection text. Display score.")
+    }
+}
 
 // get the 3 buttons
 const rockBtn = document.querySelector("#rockBtn");

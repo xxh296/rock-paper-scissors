@@ -1,13 +1,18 @@
 let humanScore = 0;
 let computerScore = 0;
 
+const ScoreMessages = {
+    YOUR_SCORE: "Your score: ",
+    COMP_SCORE: "Computer's score: "
+};
+
 const container = document.querySelector("#container");
 const selectionPrompt = document.createElement("p");
 const humanScorePara = document.createElement("p");
 const computerScorePara = document.createElement("p");
 selectionPrompt.textContent = "Please make your selection.";
-humanScorePara.textContent = "Your score: " + humanScore;
-computerScorePara.textContent = "Computer score: " + computerScore;
+humanScorePara.textContent = ScoreMessages.YOUR_SCORE + humanScore;
+computerScorePara.textContent = ScoreMessages.COMP_SCORE + computerScore;
 container.appendChild(selectionPrompt);
 container.appendChild(humanScorePara);
 container.appendChild(computerScorePara);
@@ -32,31 +37,48 @@ function playRound(humanChoice, computerChoice) {
     const humanChoiceLowerCase = humanChoice.toLowerCase();
     const humanChoiceInUI = humanChoice[0].toUpperCase() + humanChoiceLowerCase.substring(1);
     const computerChoiceInUI = computerChoice[0].toUpperCase() + computerChoice.substring(1);
-    const nextSelectionText = "Make your next selection!";
 
-    if (humanChoiceLowerCase == computerChoice) {
-        selectionPrompt.textContent = "It's a tie - both of us chose " + humanChoiceInUI +". " + nextSelectionText;
-    } else if (humanChoiceLowerCase == "rock" && computerChoice == "paper") {
-        computerScore++;
-        selectionPrompt.textContent = "You lose! " + computerChoiceInUI + " beats " + humanChoiceInUI + ". " + nextSelectionText;
-    } else if (humanChoiceLowerCase == "rock" && computerChoice == "scissors") {
-        humanScore++;
-        selectionPrompt.textContent = "You win! " + humanChoiceInUI + " beats " + computerChoiceInUI + ". " + nextSelectionText;
-    } else if (humanChoiceLowerCase == "paper" && computerChoice == "scissors") {
-        computerScore++;
-        selectionPrompt.textContent = "You lose! " + computerChoiceInUI + " beats " + humanChoiceInUI + ". " + nextSelectionText;
-    } else if (humanChoiceLowerCase == "paper" && computerChoice == "rock") {
-        humanScore++;
-        selectionPrompt.textContent = "You win! " + humanChoiceInUI + " beats " + computerChoiceInUI + ". " + nextSelectionText;
-    } else if (humanChoiceLowerCase == "scissors" && computerChoice == "rock") {
-        computerScore++;
-        selectionPrompt.textContent = "You lose! " + computerChoiceInUI + " beats " + humanChoiceInUI + ". " + nextSelectionText;
-    } else if (humanChoiceLowerCase == "scissors" && computerChoice == "paper") {
-        humanScore++;
-        selectionPrompt.textContent = "You win! " + humanChoiceInUI + " beats " + computerChoiceInUI + ". " + nextSelectionText;
-    } else {
-        console.log("You made a typo, Human...")
-    }
+    const ResultMessages = {
+        TIE: "It's a tie - both of us chose ",
+        WIN: "You win! ",
+        LOSE: "You lose! ",
+        BEATS: " beats ",
+        NEXT_SELECTION: "Make your next selection!",
+    };
+
+    switch (true) {
+        case (humanChoiceLowerCase == computerChoice):
+            selectionPrompt.textContent = ResultMessages.TIE + humanChoiceInUI + ". " + ResultMessages.NEXT_SELECTION;
+            break;
+        case (humanChoiceLowerCase == "rock" && computerChoice == "paper"):
+            computerScore++;
+            selectionPrompt.textContent = ResultMessages.LOSE + computerChoiceInUI + ResultMessages.BEATS + humanChoiceInUI + ". " + ResultMessages.NEXT_SELECTION;
+            break;
+        case (humanChoiceLowerCase == "rock" && computerChoice == "scissors"):
+            humanScore++;
+            selectionPrompt.textContent = ResultMessages.WIN + humanChoiceInUI + ResultMessages.BEATS + computerChoiceInUI + ". " + ResultMessages.NEXT_SELECTION;
+            break;
+        case (humanChoiceLowerCase == "paper" && computerChoice == "scissors"):
+            computerScore++;
+            selectionPrompt.textContent = ResultMessages.LOSE + computerChoiceInUI + ResultMessages.BEATS + humanChoiceInUI + ". " + ResultMessages.NEXT_SELECTION;
+            break;
+        case (humanChoiceLowerCase == "paper" && computerChoice == "rock"):
+            humanScore++;
+            selectionPrompt.textContent = ResultMessages.WIN + humanChoiceInUI + ResultMessages.BEATS + computerChoiceInUI + ". " + ResultMessages.NEXT_SELECTION;
+            break;
+        case (humanChoiceLowerCase == "scissors" && computerChoice == "rock"):
+            computerScore++;
+            selectionPrompt.textContent = ResultMessages.LOSE + computerChoiceInUI + ResultMessages.BEATS + humanChoiceInUI + ". " + ResultMessages.NEXT_SELECTION;
+            break;
+        case (humanChoiceLowerCase == "scissors" && computerChoice == "paper"):
+            humanScore++;
+            selectionPrompt.textContent = ResultMessages.WIN + humanChoiceInUI + ResultMessages.BEATS + computerChoiceInUI + ". " + ResultMessages.NEXT_SELECTION;
+            break;
+        default:
+            console.log("You made a typo, Human...");
+            break;
+    } 
+
     checkScore();    
 }
 
@@ -75,8 +97,8 @@ function checkScore() {
         announceWinner();
         swapButtons();
     } else {
-        humanScorePara.textContent = "Your score: " + humanScore;
-        computerScorePara.textContent = "Computer score: " + computerScore;
+        humanScorePara.textContent = ScoreMessages.YOUR_SCORE + humanScore;
+        computerScorePara.textContent = ScoreMessages.COMP_SCORE + computerScore;
     }
 }
 
@@ -93,8 +115,8 @@ function swapButtons() {
     rockBtn.remove();
     paperBtn.remove();
     scissorsBtn.remove();
-    humanScorePara.textContent = "Your score: " + humanScore;
-    computerScorePara.textContent = "Computer score: " + computerScore;
+    humanScorePara.textContent = ScoreMessages.YOUR_SCORE + humanScore;
+    computerScorePara.textContent = ScoreMessages.COMP_SCORE + computerScore;
     const playAgainBtn = document.createElement("button");
     playAgainBtn.textContent = "Play again";
     playAgainBtn.onclick = () => location.reload();
